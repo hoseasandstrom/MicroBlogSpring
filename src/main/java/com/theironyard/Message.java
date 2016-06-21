@@ -1,13 +1,22 @@
 package com.theironyard;
 
+import javax.persistence.*;
+
 /**
  * Created by hoseasandstrom on 6/20/16.
  */
+@Entity
+@Table(name = "messages")
 public class Message {
-    Integer id;
+    @Id
+            @GeneratedValue
+    int id;
+
+    @Column(nullable = false)
     String text;
 
-    public Message(Integer id, String text) {
+
+    public Message(int id, String text) {
         this.id = id;
         this.text = text;
     }
@@ -15,7 +24,7 @@ public class Message {
     public Message() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 

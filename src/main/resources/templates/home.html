@@ -26,6 +26,10 @@ Messages from: {{name}}
     {{#messages}}
     <li>
         {{text}}
+        <form action="/editmessage" type="put" style="display: inline-block;">
+            <input type="hidden" name="id" value="{{id}}"/>
+            <button type="submit"><strong>Edit</strong></button>
+            </form>
         <form action="/deletemessage" method="post" style="display: inline-block">
             <input type="hidden" name="id" value="{{id}}"/>
             <br>

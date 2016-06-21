@@ -14,10 +14,16 @@ import java.util.ArrayList;
  */
 @Controller
 public class MicroBlogSpringController {
-    ArrayList<Message> messageList = new ArrayList<>();
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String home(Model model, HttpSession session) {
+
+        String idStr = "id";
+        Integer id = 0;
+        if (idStr != null) {
+            id = Integer.valueOf(idStr);
+        }
+
 
         String username = (String) session.getAttribute("username");
         User user = null;
@@ -25,15 +31,9 @@ public class MicroBlogSpringController {
             user = new User(username);
         }
 
-        for (Message msg : messageList) {
-            int id = 1;
-            msg.id = id;
-            id++;
-
-        }
 
         model.addAttribute("user", user);
-        model.addAttribute("messages", messageList);
+        model.addAttribute("messages");
         return "home";
     }
 
@@ -52,7 +52,7 @@ public class MicroBlogSpringController {
     }
     @RequestMapping(path = "/addmessage", method = RequestMethod.POST)
     public String addmessage(String message, HttpSession session) {
-        Message msg = new Message(messageList.size() +1, message);
+        Message msg = new Message(message,);
         messageList.add(msg);
 
         return "redirect:/";
@@ -61,9 +61,16 @@ public class MicroBlogSpringController {
     public String deletemessage(Integer id) {
         messageList.remove(id - 1);
 
-
         return "redirect:/";
 
+    }
+    @RequestMapping(path ="/editmessage", method = RequestMethod.PUT)
+    public  String editmessage(String message) {
+        Integer id = Integer.valueOf("{id}");
+        Message msg = new Message(id, message);
+        messageList.add(msg);
+
+        return "redirect:/";
     }
 
 }
