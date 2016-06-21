@@ -33,13 +33,16 @@ public class MicroBlogSpringController {
         }
 
         model.addAttribute("user", user);
-        model.addAttribute("messageList", messageList);
+        model.addAttribute("messages", messageList);
         return "home";
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public String login(String username, HttpSession session) {
+    public String login(String username, HttpSession session) throws Exception {
         session.setAttribute("username", username);
+        if (username == null) {
+            throw new Exception("Did not receive username");
+        }
         return "redirect:/";
     }
     @RequestMapping(path ="/logout", method = RequestMethod.POST)
@@ -47,14 +50,14 @@ public class MicroBlogSpringController {
         session.invalidate();
         return "redirect:/";
     }
-    @RequestMapping(path = "/add-message", method = RequestMethod.POST)
-    public String addmessage(String text, HttpSession session) {
-        Message msg = new Message(text);
+    @RequestMapping(path = "/addmessage", method = RequestMethod.POST)
+    public String addmessage(String message, HttpSession session) {
+        Message msg = new Message(messageList.size() +1, message);
         messageList.add(msg);
 
         return "redirect:/";
     }
-    @RequestMapping(path = "/delete-message", method = RequestMethod.POST)
+    @RequestMapping(path = "/deletemessage", method = RequestMethod.POST)
     public String deletemessage(Integer id) {
         messageList.remove(id - 1);
 

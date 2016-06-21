@@ -2,34 +2,38 @@
 <body>
 
 {{^user}}
-<form action="login" method="post">
+<form action="/login" method="post">
     <input type="text" name="username" placeholder="Enter your username"/>
     <button type="submit">Login</button>
 </form>
 {{/user}}
+
+{{#user}}
 <form action="/logout" method="post">
     <button type="submit">Logout</button>
 </form>
-{{#user}}
+
 Messages from: {{name}}
 
-<form action="/add-message" method="post">
-    <input type="text" name="text" placeholder="Write your message"/>
+<form action="/addmessage" method="post">
+    <input type="text" name="message" placeholder="Write your message"/>
     <button type="submit">Submit</button>
 </form>
+{{/user}}
 <br>
 
-<ol>{{#messagelist}}
+<ol>
+    {{#messages}}
     <li>
         {{text}}
-        <form action="/delete-message" method="post" style="display: inline-block">
+        <form action="/deletemessage" method="post" style="display: inline-block">
             <input type="hidden" name="id" value="{{id}}"/>
             <br>
             <button type="submit"><strong>Delete</strong></button>
         </form>
     </li>
-    {{/messagelist}}
+    {{/messages}}
 </ol>
-{{/user}}
+
 </body>
 </html>

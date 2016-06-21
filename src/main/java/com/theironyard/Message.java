@@ -7,8 +7,8 @@ public class Message {
     Integer id;
     String text;
 
-    public Message(String text) {
-
+    public Message(Integer id, String text) {
+        this.id = id;
         this.text = text;
     }
 
@@ -21,13 +21,5 @@ public class Message {
 
     public String getText() {
         return text;
-    }
-
-    @Override
-    public String toString() {
-        return "Message{" +
-                "id=" + id +
-                ", text='" + text + '\'' +
-                '}';
     }
 }
