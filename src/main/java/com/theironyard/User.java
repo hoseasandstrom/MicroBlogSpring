@@ -14,7 +14,14 @@ import java.util.ArrayList;
 public class User {
     @Column(nullable = false)
     String name;
+    @Column(nullable = false)
+    String password;
 
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
 
     public User(String name) {
         this.name = name;
@@ -29,5 +36,13 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
