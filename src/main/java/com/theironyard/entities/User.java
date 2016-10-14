@@ -1,9 +1,6 @@
-package com.theironyard;
+package com.theironyard.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.ArrayList;
+import javax.persistence.*;
 
 /**
  * Created by hoseasandstrom on 6/20/16.
@@ -12,9 +9,15 @@ import java.util.ArrayList;
 @Table(name = "users")
 
 public class User {
+    @Id
+    @GeneratedValue
+    Integer id;
+
     @Column(nullable = false)
     String name;
+
     @Column(nullable = false)
+    public
     String password;
 
 

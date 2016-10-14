@@ -1,4 +1,4 @@
-package com.theironyard;
+package com.theironyard.entities;
 
 import javax.persistence.*;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Message {
     @Id
             @GeneratedValue
-    int id;
+    Integer id;
 
     @Column(nullable = false)
     String text;
@@ -19,15 +19,19 @@ public class Message {
         this.text = text;
     }
 
-    public Message(int id, String text) {
+    public Message(Integer id, String text) {
         this.id = id;
         this.text = text;
+    }
+
+    public Message(Integer id) {
+        this.id = id;
     }
 
     public Message() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
